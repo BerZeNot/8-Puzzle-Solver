@@ -55,6 +55,7 @@ public class Node implements Comparable<Node>{
 
         return tmpEstado;
     }
+
     public void setEstado(int[][] estado) {
         this.estado = estado;
     }
@@ -73,6 +74,9 @@ public class Node implements Comparable<Node>{
 
     public void setH(int h) {
         this.h = h;
+
+        // Atualiza F
+        this.f = this.g + this.h;
     }
 
     public int getG() {
@@ -120,11 +124,24 @@ public class Node implements Comparable<Node>{
 
         return sb.toString();
     }
+
     public void printEstado(){
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("[%d][%d][%d]\n",estado[0][0],estado[0][1],estado[0][2]));
         sb.append(String.format("[%d][%d][%d]\n",estado[1][0],estado[1][1],estado[1][2]));
         sb.append(String.format("[%d][%d][%d]\n",estado[2][0],estado[2][1],estado[2][2]));
+        System.out.println(sb.toString());
+    }
+
+    public static void printEstado(int estado[][], int ordemDaMatrizDeEstado){
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=0; i<ordemDaMatrizDeEstado; i++){
+            for(int j=0; j<ordemDaMatrizDeEstado; j++){
+                sb.append(String.format("[%d]",estado[i][j]));
+            }
+            sb.append("\n");
+        }
         System.out.println(sb.toString());
     }
 
